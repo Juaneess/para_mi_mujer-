@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cami el amor de mi vida 💙</title>
+
+<style>
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+margin:0;
+padding:0;
+font-family:'Times New Roman',serif;
+background:linear-gradient(135deg,#1e3c72,#6a1b9a);
+color:white;
+overflow-x:hidden;
+}
+
+/* PANTALLAS */
+
+.screen{
+display:none;
+min-height:100vh;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px 20px;
+box-sizing:border-box;
+}
+
+.active{
+display:flex;
+}
+
+/* TEXTOS CLAVE */
+
+.texto{
+opacity:0;
+transform:translateY(10px);
+animation:aparecer 1s forwards;
+}
+
+.fade1{animation-delay:0.5s;}
+.fade2{animation-delay:1.2s;}
+.fade3{animation-delay:1.9s;}
+
+@keyframes aparecer{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.especial{
+position:relative;
+display:inline-block;
+margin:12px 0;
+font-size:22px;
+}
+
+.corazon{
+position:absolute;
+top:-8px;
+right:-10px;
+width:8px;
+height:8px;
+background:#8ec5ff;
+transform:rotate(45deg);
+}
+
+.corazon::before,
+.corazon::after{
+content:"";
+position:absolute;
+width:8px;
+height:8px;
+background:#8ec5ff;
+border-radius:50%;
+}
+
+.corazon::before{
+top:-4px;
+left:0;
+}
+
+.corazon::after{
+left:-4px;
+top:0;
+}
+
+/* DISPLAY */
+
+#display{
+margin-top:20px;
+font-size:24px;
+letter-spacing:8px;
+}
+
+/* TECLADO */
+
+.keypad{
+display:grid;
+grid-template-columns:repeat(3,70px);
+gap:12px;
+margin-top:25px;
+opacity:0;
+transition:1s;
+}
+
+.mostrar{
+opacity:1;
+}
+
+.key{
+background:rgba(255,255,255,0.1);
+border:1px solid rgba(255,255,255,0.2);
+border-radius:18px;
+padding:15px;
+font-size:20px;
+color:white;
+cursor:pointer;
+transition:0.2s;
+backdrop-filter:blur(5px);
+}
+
+.key:hover{
+background:rgba(255,255,255,0.25);
+transform:scale(1.08);
+}
+
+.key:active{
+transform:scale(0.92);
+}
+
+.cero{
+grid-column:2;
+}
+
+/* INTRO */
+
+.intro{
+font-size:34px;
+max-width:700px;
+line-height:1.8;
+animation:suave 2s infinite alternate;
+}
+
+@keyframes suave{
+from{opacity:0.7;}
+to{opacity:1;}
+}
+
+.heart-btn{
+margin-top:25px;
+font-size:30px;
+cursor:pointer;
+animation:latido 2s infinite;
+}
+
+@keyframes latido{
+0%,100%{transform:scale(1);}
+50%{transform:scale(1.15);}
+}
+
+/* CARTA */
+
+.notepad{
+width:100%;
+max-width:900px;
+margin:auto;
+padding:80px 25px;
+box-sizing:border-box;
+}
+
+/* TITULO */
+
+.notepad h1{
+text-align:center;
+font-size:46px;
+margin-bottom:100px;
+letter-spacing:2px;
+}
+
+/* MENSAJES */
+
+.mensaje{
+position:relative;
+font-size:22px;
+line-height:2.5;
+margin-bottom:120px;
+padding-left:120px;
+text-align:left;
+white-space:pre-line;
+animation:fadeUp 1s ease;
+}
+
+/* IMAGENES */
+
+.mensaje img{
+position:absolute;
+left:0;
+top:10px;
+width:75px;
+border-radius:16px;
+box-shadow:0 8px 20px rgba(0,0,0,0.30);
+opacity:0;
+transform:translateY(20px);
+animation:mostrarFoto 1.2s forwards;
+}
+
+/* FOTO */
+
+@keyframes mostrarFoto{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* TEXTO */
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* FINAL */
+
+.final-btn{
+display:block;
+margin:120px auto 0;
+padding:14px 34px;
+border:none;
+border-radius:30px;
+background:rgba(255,255,255,0.15);
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.final-btn:hover{
+transform:scale(1.05);
+background:rgba(255,255,255,0.25);
+}
+
+#mensajeFinal{
+opacity:0;
+margin-top:60px;
+font-size:32px;
+text-align:center;
+transition:2s;
+line-height:1.8;
+padding-bottom:100px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.mensaje{
+font-size:20px;
+line-height:2.3;
+padding-left:95px;
+}
+
+.mensaje img{
+width:65px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="musica" loop autoplay>
+<source src="https://files.catbox.moe/yb2ta6.mp3" type="audio/mpeg">
+</audio>
+
+<!-- CLAVE -->
+
+<div id="passwordScreen" class="screen active">
+
+<h2 class="texto fade1 especial">
+🔒 algo especial te espera…
+<span class="corazon"></span>
+</h2>
+
+<p class="texto fade2 especial">
+Mi caleña favorita y la única dueña de mi corazón
+<span class="corazon"></span>
+</p>
+
+<p class="texto fade3 especial">
+solo tú puedes descubrirlo
+<span class="corazon"></span>
+</p>
+
+<div id="display">••••</div>
+
+<div id="keypad" class="keypad">
+
+<button class="key" onclick="add('1')">1</button>
+<button class="key" onclick="add('2')">2</button>
+<button class="key" onclick="add('3')">3</button>
+
+<button class="key" onclick="add('4')">4</button>
+<button class="key" onclick="add('5')">5</button>
+<button class="key" onclick="add('6')">6</button>
+
+<button class="key" onclick="add('7')">7</button>
+<button class="key" onclick="add('8')">8</button>
+<button class="key" onclick="add('9')">9</button>
+
+<div></div>
+<button class="key cero" onclick="add('0')">0</button>
+<div></div>
+
+</div>
+
+</div>
+
+<!-- INTRO -->
+
+<div id="introScreen" class="screen">
+
+<div class="intro">
+Mi princesa… esto siempre será para ti 💙
+</div>
+
+<div class="heart-btn" onclick="playMusic()">
+💙
+</div>
+
+</div>
+
+<!-- CARTA -->
+
+<div id="mainScreen" class="screen">
+
+<div class="notepad">
+
+<h1>EL ORIGEN DE TODO 💙</h1>
+
+<div class="mensaje">
+<img src="https://files.catbox.moe/fzcsl2.jpg">
+
+Uno podría pensar “wow" que rápido se nos dio todo y la verdad si es demasiado increíble pensar que hace exactamente 3 meses empezamos a hablar.
+
+Pero al mismo tiempo se siente como si mi corazón ya te conociera desde antes, porque desde el primer día conectamos demasiado bien, de una manera tan bonita y tan especial… que desde ese momento supe que contigo todo sería diferente.
+</div>
+
+<div class="mensaje">
+<img src="https://files.catbox.moe/fpenm0.jpg">
+
+Y lo más lindo de todo es que apenas al segundo día ya te tenía un cariño enorme un cariño tan sincero y tan bonito que fue creciendo cada vez más sin darme cuenta.
+</div>
+
+<div class="mensaje">
+<img src="https://files.catbox.moe/nkzn1v.jpg">
+
+Solo bastaron unas semanas para dar el siguiente paso, y fue tan hermoso ver cómo todo entre nosotros fue fluyendo de una manera tan natural y sigue fluyendo.
+</div>
+
+<div class="mensaje">
+<img src="https://files.catbox.moe/noa38s.jpg">
+
+Poco a poco hemos ido creando algo demasiado bonito, algo que de verdad llevo en mi corazón y en mi alma.
+</div>
+
+<div class="mensaje">
+<img src="https://files.catbox.moe/x03act.jpg">
+
+Porque contigo entendí que no siempre se trata del tiempo también se trata de cómo conectas con alguien de una manera tan especial.
+</div>
+
+<div class="mensaje">
+<img src="https://files.catbox.moe/fzcsl2.jpg">
+
+Y eso fue lo que pasó contigo y conmigo.
+
+En tan solo unas semanas de habernos conocido fuimos rompiendo la barrera del tiempo.
+</div>
+
+<div class="mensaje">
+<img src="https://files.catbox.moe/fpenm0.jpg">
+
+Y a nosotros solo nos bastaron 2 semanas para empezar a formar un amor tan increíble.
+</div>
+
+<div class="mensaje">
+<img src="https://files.catbox.moe/nkzn1v.jpg">
+
+Y si algún día me dieran a elegir volver al momento donde fui feliz por primera vez sin dudarlo elegiría el 23 de febrero del 2026 💗
+</div>
+
+<div class="mensaje">
+<img src="https://files.catbox.moe/noa38s.jpg">
+
+Porque tú y yo conectamos de la manera más especial que he sentido en toda mi vida.
+</div>
+
+<div class="mensaje">
+<img src="https://files.catbox.moe/x03act.jpg">
+
+Nunca había sentido tanta felicidad por hablar con una persona.
+
+Nunca había sentido tanta paz leyendo mensajes tuyos.
+</div>
+
+<div class="mensaje">
+<img src="https://files.catbox.moe/fzcsl2.jpg">
+
+Nunca había sentido un amor tan bonito, tan real y tan sincero como el que siento contigo.
+</div>
+
+<div class="mensaje">
+<img src="https://files.catbox.moe/fpenm0.jpg">
+
+Porque contigo todo ha sido diferente vidaa mía.
+</div>
+
+<div class="mensaje">
+<img src="https://files.catbox.moe/nkzn1v.jpg">
+
+Tú fuiste la primer y única persona que realmente se fijó en mí de esa manera tan bonita.
+</div>
+
+<div class="mensaje">
+<img src="https://files.catbox.moe/noa38s.jpg">
+
+Pero entonces llegaste tú y sin darte cuenta hiciste que mi corazón volviera a creer en algo que pensaba imposible.
+</div>
+
+<div class="mensaje">
+<img src="https://files.catbox.moe/x03act.jpg">
+
+Y aunque para otras personas 3 meses puedan parecer poco… para mí han significado muchísimo.
+</div>
+
+<div class="mensaje">
+<img src="https://files.catbox.moe/fzcsl2.jpg">
+
+Te Quiero para toda mi vidaa.
+
+Te Amoooooo como no te imaginas mi vidaa 💗
+</div>
+
+<div class="mensaje">
+<img src="https://files.catbox.moe/fpenm0.jpg">
+
+Y siempre me encargaré de demostrarte que mi amor por ti es real y nunca voy a lastimarte.
+</div>
+
+<button class="final-btn" onclick="mostrarFinal()">
+fin 💙
+</button>
+
+<div id="mensajeFinal">
+y si tuviera que elegir otra vez…<br>
+siempre serías tú sin dudarlo 💙
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let input="";
+const password="2340";
+let musicStarted=false;
+
+setTimeout(()=>{
+document.getElementById("keypad").classList.add("mostrar");
+},2600);
+
+function playMusic(){
+
+if(!musicStarted){
+
+document.getElementById("musica").play();
+musicStarted=true;
+
+}
+
+}
+
+function add(num){
+
+if(input.length<4){
+
+input += num;
+
+document.getElementById("display").textContent =
+input.padEnd(4,"•");
+
+}
+
+if(input.length===4){
+
+if(input===password){
+
+document.getElementById("passwordScreen")
+.classList.remove("active");
+
+document.getElementById("introScreen")
+.classList.add("active");
+
+playMusic();
+
+setTimeout(()=>{
+
+document.getElementById("introScreen")
+.classList.remove("active");
+
+document.getElementById("mainScreen")
+.classList.add("active");
+
+},3000);
+
+}else{
+
+alert("clave incorrecta 💔");
+
+input="";
+
+document.getElementById("display")
+.textContent="••••";
+
+}
+
+}
+
+}
+
+function mostrarFinal(){
+
+document.getElementById("mensajeFinal")
+.style.opacity="1";
+
+}
+
+</script>
+
+</body>
+  </html>
